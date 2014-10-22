@@ -1,12 +1,12 @@
 ---
-name: centos5.11
-distro: centos
-version: '5.11'
-kickstart_path: kickstarts/kickstart.centos5.cfg
+name: sl6
+distro: scientific
+version: '6.5'
+kickstart_path: kickstarts/kickstart.sl6.cfg
 
 build_instance:
-  key_name: openstack
-  flavor: 3
+  key_name: dagobah
+  flavor: 3 
   image: ce268db5-ceda-4a90-93c8-3b987ac3705f
   user: ubuntu
   net_id: ba0fdd03-72b5-41eb-bb67-fef437fd6cb4

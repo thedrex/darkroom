@@ -34,12 +34,13 @@ PACKER_BUILDER_BASE = {
             "ssh_username": "root",
             "ssh_password": "s0m3pass",
             "ssh_port": 22,
-            "ssh_wait_timeout": "30m",
+            "ssh_wait_timeout": "90m",
             "net_device": "virtio-net",
             "disk_interface": "virtio",
             "boot_wait": "10s",
             "qemuargs": [
                 ["-m", "2048m"]
+#                ["-smp", "4"]
             ],
             "boot_command": [
                 "<tab> linux text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/kickstart.cfg ip=dhcp dns=8.8.8.8<enter>"  # noqa

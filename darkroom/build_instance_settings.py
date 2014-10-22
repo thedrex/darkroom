@@ -19,7 +19,7 @@ import uuid
 DEFAULT_IMAGE = 'ubuntu-12.04'
 DEFAULT_FLAVOR = 'm1.medium'
 DEFAULT_USER = 'ubuntu'
-DEFAULT_KEY_NAME = 'openstack'
+DEFAULT_KEY_NAME = 'dagobah'
 DEFAULT_PACKER_URL = 'https://dl.bintray.com/mitchellh/packer/0.6.1_linux_amd64.zip'  # noqa
 
 

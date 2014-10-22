@@ -146,7 +146,7 @@ class ImageBuilder(object):
 
     def _wait_for_ssh(self):
         interval = 5
-        retries = 60
+        retries = 180
         count = 0
 
         for x in range(retries):
@@ -187,11 +187,12 @@ class ImageBuilder(object):
 
 
 from darkroom.builders.rhel import RhelImageBuilder
+from darkroom.builders.sl6 import SLImageBuilder
 
 
 def get_image_builder(settings):
     distro = settings.get('distro', None)
     version = settings.get('version', None)
-    if distro in RhelImageBuilder.supported_distros():
-        return RhelImageBuilder(settings)
+    if distro in SLImageBuilder.supported_distros():
+        return SLImageBuilder(settings)
     raise Exception("Unknown distro %s and/or version %s" % (distro, version))
