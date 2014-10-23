@@ -43,7 +43,8 @@ PACKER_BUILDER_BASE = {
 #                ["-smp", "4"]
             ],
             "boot_command": [
-                "<tab> linux text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/kickstart.cfg ip=dhcp dns=8.8.8.8<enter>"  # noqa
+#                "<tab> linux text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/kickstart.cfg ip=dhcp dns=8.8.8.8<enter>"  # noqa
+                "<tab> linux cmdline ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/kickstart.cfg ip=dhcp dns=8.8.8.8<enter>"  # noqa
             ]
         }
     ],

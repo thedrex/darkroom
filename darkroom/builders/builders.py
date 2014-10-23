@@ -1,38 +1,29 @@
-# vim: tabstop=4 shiftwidth=4 softtabstop=4
-
-# Copyright 2014, Craig Tracey
-# All Rights Reserved.
-#
-#    Licensed under the Apache License, Version 2.0 (the "License"); you may
-#    not use this file except in compliance with the License. You may obtain
-#    a copy of the License at
-#
-#         http://www.apache.org/licenses/LICENSE-2.0
-#
-#    Unless required by applicable law or agreed to in writing, software
-#    distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
-#    WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
-#    License for the specific language governing permissions and limitations
-
 from darkroom.image_builder import ImageBuilder
 from darkroom.packer_settings import PackerSettings
 
 DISTRO_ISO_INFO = {
     'scientific': {
         '6.5': {
-#            'iso_url': 'http://mirror.mcs.anl.gov/pub/scientific-linux/6.5/x86_64/iso/SL-65-x86_64-2014-01-27-Install-DVD.iso',  # noqa
-            'iso_url': 'http://drewsnest.com/SL-65-x86_64-2014-01-27-Install-DVD.iso',  # noqa
-            'iso_checksum': 'a95e182f6ed14a4fb36e448d6eb19a6a59a34778',
+            'iso_url': 'http://mirrors.200p-sf.sonic.net/scientific/6.5/x86_64/iso/SL-65-x86_64-2014-01-27-Install-DVD.iso',  # noqa
+            'iso_checksum': '2c56df9b6a6cce14fae802de0bb4a675b5bdc69d',
             'iso_checksum_type': 'sha1'
         }
+    },
+    'centos': {
+        '5.11': {
+            'iso_url': 'http://mirror.raystedman.net/centos/5/isos/x86_64/CentOS-5.11-x86_64-netinstall.iso',  # noqa
+            'iso_checksum': 'f2087f9af0d50df05144a1f0d1c5b404',
+            'iso_checksum_type': 'md5'
+        }
     }
+
 }
 
 
-DEFAULT_BOOT_COMMAND = ["<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/kickstart.cfg<enter>"]  # noqa
+DEFAULT_BOOT_COMMAND = ["<tab> cmdline ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/kickstart.cfg selinux=0<enter>"]  # noqa
 
 
-class SLImageBuilder(ImageBuilder):
+class LinuxImageBuilder(ImageBuilder):
 
     def __init__(self, settings):
         self._settings = settings
@@ -42,7 +33,7 @@ class SLImageBuilder(ImageBuilder):
         self.kickstart_path = settings.get('kickstart_path', None)
         self.boot_command = DEFAULT_BOOT_COMMAND
         self._packer_settings = None
-        super(SLImageBuilder, self).__init__(settings)
+        super(LinuxImageBuilder, self).__init__(settings)
 
     @staticmethod
     def supported_distros():

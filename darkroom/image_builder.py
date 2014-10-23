@@ -186,13 +186,13 @@ class ImageBuilder(object):
         sys.exit(-1)
 
 
-from darkroom.builders.rhel import RhelImageBuilder
-from darkroom.builders.sl6 import SLImageBuilder
-
+#from darkroom.builders.rhel import RhelImageBuilder
+#from darkroom.builders.sl6 import SLImageBuilder
+from darkroom.builders.builders import LinuxImageBuilder
 
 def get_image_builder(settings):
     distro = settings.get('distro', None)
     version = settings.get('version', None)
-    if distro in SLImageBuilder.supported_distros():
-        return SLImageBuilder(settings)
+    if distro in LinuxImageBuilder.supported_distros():
+        return LinuxImageBuilder(settings)
     raise Exception("Unknown distro %s and/or version %s" % (distro, version))
